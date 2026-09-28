@@ -1,4 +1,4 @@
-# Data Engineering Notes: A Practical Guide for Data Analysts who wants to make a switch to Data Engineer and Data Engineers
+# Data Engineering Notes: A Guide for Data Analysts who wants to make a switch to Data Engineer and Data Engineers
 
 If you're a **Data Analyst looking to transition into Data
 Engineering**, or a **Data Engineer who wants to revise important
