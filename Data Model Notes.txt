@@ -1,0 +1,98 @@
+Data Model Note:-
+
+1 - What is a Data Model? A structured way to organize data so it is clean, consistent, relational, and optimized for analytics.
+
+Genera Notes:-
+1. Star Schema Central Fact table + surrounding Dimension tables → simple, fast, best for BI.
+2. Snowflake Schema Dimensions further normalized into sub-dimensions → reduces redundancy but slower.
+3. Fact Table Stores numerical measures (sales, revenue) at lowest grain.
+4. Dimension Table Stores descriptive attributes (date, product, customer) for slicing & filtering.
+5. Granularity The lowest level of detail stored in the fact table (e.g., daily sales, per transaction).
+6. Surrogate Key System-generated key (like integer ID) used instead of natural key → avoids duplicates & formatting issues.
+7. Primary Key Unique identifier in each table → ensures no duplicates.
+8. Foreign Key Connects fact table to dimension table → defines relationships.
+9. Cardinality Type of relationship (1:1, 1:M, M:M). Defines how tables join.
+10. Many-to-Many Relationship Requires bridge table to avoid duplicate aggregations.
+11. Bridge Table Intermediate table used to handle M:M relationships (ex: customer ↔ multiple accounts).
+12. Relationship Active/Inactive Only one active path filters the fact table. Inactive path works using USERELATIONSHIP.
+
+13. Cross-Filter Direction
+Single → recommended; avoids ambiguity.
+Both → only when required for complex models.
+
+14. Conformed Dimensions Dimensions shared across multiple fact tables (e.g., same Date Dim for Sales & Returns).
+
+15. Slowly Changing Dimensions (SCD)
+Tracks changes in dimension attributes.
+
+SCD Type 0 – Ignore changes
+SCD Type 1 – Overwrite old data
+SCD Type 2 – Add new row + maintain history
+SCD Type 3 – Store only previous value
+SCD Type 4 – Separate history table
+SCD Type 6 – Hybrid (1+2+3)
+
+16. Normalization Organizing data to remove duplicates (3NF). Common in OLTP.
+
+17. Denormalization Flattening tables for faster reporting. Common in OLAP/BI.
+
+18. Data Model Layers
+
+Conceptual – high-level entities and relationships
+Logical – attributes, keys, cardinalities
+Physical – actual tables, columns, indexes in database
+
+19. ER Diagram (Entity Relationship)
+Diagram showing entities and relationships between tables.
+
+20. Data Model Validation
+Check joins, cardinality, granularity, and filters are correct before building visuals.
+
+21. Fact Table Types
+
+Transactional – every event
+Snapshot – data at a point in time
+Periodic Snapshot – regular intervals (e.g., monthly closing)
+
+22. Data Integrity
+Ensures consistency using keys, constraints, and correct relationships.
+
+23. Role-Playing Dimensions
+Same dimension used multiple times (Date: Order Date, Ship Date).
+
+24. Junk Dimension
+Combines low-cardinality flags (Y/N fields) into one dimension.
+
+25. Structure/Un-Structure/Semi-Structure
+
+a. Structured Data
+
+Meaning:
+Data stored in a fixed row-column format with a strict schema.
+
+Examples:
+SQL tables
+Excel sheets
+Customer table (CustomerID, Name, Phone)
+
+b. Semi-Structured Data
+
+Meaning:
+Data does not follow a strict table schema but has some tags or structure for easy parsing.
+
+Examples:
+JSON
+XML
+Parquet
+CSV with variable columns
+
+c. Unstructured Data
+
+Meaning:
+Data with no predefined structure or schema, difficult to store in tables.
+
+Examples:
+Emails
+Images, videos, audio
+Social media posts
+PDF documents

@@ -1,0 +1,196 @@
+1. Data Architecture Fundamentals
+
+❓Q1: What is a Data Architecture?
+
+Answer:
+Data Architecture defines how data is collected, stored, processed, integrated, and consumed across an organization.
+It provides blueprints for data flow, governance, storage systems, and integration patterns.
+It ensures scalability, security, and data quality in analytical and operational systems.
+Key components:
+Data Sources
+Data Ingestion Layer
+Storage (Data Lake / Warehouse)
+Transformation Layer (ETL/ELT)
+Consumption Layer (BI / ML / APIs)
+Metadata & Governance Layer
+
+☁️ 2. Cloud Data Architecture
+
+❓Q2: How would you design a scalable cloud-based data pipeline?
+
+Answer:
+A typical scalable design includes:
+Ingestion Layer:
+Use AWS Kinesis / Kafka for streaming.
+AWS DMS or Glue Crawlers for batch ingestion.
+Storage Layer:
+Raw data → Amazon S3 (Data Lake).
+Processed data → Redshift / Snowflake (Data Warehouse).
+Processing Layer:
+Use AWS Glue / EMR (PySpark) for ETL.
+Lambda for light transformations.
+Serving Layer:
+Athena / QuickSight for ad-hoc queries.
+API Gateway + Lambda for app consumption.
+Governance:
+AWS Glue Catalog for metadata.
+Lake Formation for access control.
+
+🧮 3. Data Lake vs Data Warehouse
+
+❓Q3: What is the difference between a Data Lake and a Data Warehouse?
+
+Answer:
+Feature
+Data Lake
+Data Warehouse
+Data Type
+Raw (structured + unstructured)
+Processed (structured)
+Schema
+Schema-on-read
+Schema-on-write
+Cost
+Low (object storage)
+Higher (compute + storage)
+Tools
+S3, ADLS, GCS
+Redshift, Snowflake, BigQuery
+Use Case
+Data exploration, ML
+BI, analytics, reporting
+
+🧰 4. ETL vs ELT
+
+❓Q4: What’s the difference between ETL and ELT?
+Answer:
+
+ETL (Extract → Transform → Load): Data is transformed before loading into the warehouse. Used when compute is outside (e.g., Glue → Redshift).
+ELT (Extract → Load → Transform): Raw data is first loaded, then transformed inside the warehouse (e.g., Snowflake, BigQuery).
+When to choose:
+ETL → for complex transformations outside DB.
+ELT → when using modern MPP warehouses with high compute.
+
+🔁 5. Data Modeling
+
+❓Q5: What are the common data modeling techniques used in analytics?
+
+Answer:
+Star Schema: Fact table + dimension tables; optimized for queries.
+Snowflake Schema: Dimensions are normalized for less redundancy.
+Data Vault: Stores raw and business data for auditability.
+3NF (Third Normal Form): Used in transactional systems.
+
+🔒 6. Data Governance & Quality
+
+❓Q6: How do you ensure data quality and governance in a large data ecosystem?
+
+Answer:
+Data Quality Checks: Nulls, duplicates, type checks using Glue or Great Expectations.
+Data Lineage: Track origin and transformation (AWS Glue Data Catalog / Apache Atlas).
+Access Control: Implement IAM + Lake Formation for permissions.
+Metadata Management: Maintain schema and business metadata in centralized catalog.
+Monitoring: Set up CloudWatch metrics and alerts for job failures.
+
+📈 7. Performance Optimization
+
+❓Q7: How do you optimize performance in a data pipeline?
+Answer:
+
+Partition data by date or region for faster queries.
+Use Parquet/ORC formats for compression and predicate pushdown.
+Optimize joins and shuffles in Spark.
+Leverage caching in warehouses like Redshift or Snowflake.
+Parallelism & auto-scaling in Glue or EMR.
+
+⚙️ 8. AWS Glue in Data Architecture
+
+❓Q8: How does AWS Glue fit into a modern data architecture?
+
+Answer:
+Glue acts as the ETL backbone in AWS:
+Ingestion: Crawlers discover data from S3, RDS, or JDBC.
+Transformation: Glue jobs (PySpark or Python shell) clean and transform.
+Orchestration: Glue Workflows or Step Functions chain jobs.
+Cataloging: Glue Data Catalog centralizes metadata.
+Integration: Works seamlessly with Athena, Redshift, and QuickSight.
+
+🧮 9. Data Lakehouse Architecture
+
+❓Q9: What is a Data Lakehouse, and how is it different from a Data Lake?
+
+Answer:
+A Data Lakehouse combines the flexibility of a data lake with the reliability and performance of a data warehouse.
+Key features:
+Uses open formats (Parquet, Delta, Iceberg).
+Supports ACID transactions.
+Unified access for BI + ML.
+Examples: Databricks Delta Lake, Apache Iceberg, AWS Athena + Glue + Redshift Spectrum.
+
+🧑‍💻 10. Real-Time Data Processing
+
+❓Q10: How do you design a real-time data architecture?
+
+Answer:
+Ingestion: Kafka / Kinesis stream data in real-time.
+Processing: Use AWS Glue Streaming or Spark Structured Streaming.
+Storage:
+Hot data → DynamoDB or Redis.
+Cold data → S3.
+Consumption: Real-time dashboards in QuickSight / Grafana.
+Monitoring: CloudWatch + Alarms for latency & throughput.
+
+🧩 11. Data Security and Compliance
+
+❓Q11: What are best practices for securing data in AWS architecture?
+
+Answer:
+Encrypt data at rest (S3 SSE / KMS) and in transit (TLS).
+Apply IAM roles and policies with least-privilege principle.
+Enable VPC endpoints for private data transfer.
+Use AWS Lake Formation for column- and row-level security.
+Set up CloudTrail for audit logs.
+
+🧭 12. Orchestration and Monitoring
+
+❓Q12: How do you orchestrate and monitor ETL pipelines in AWS?
+
+Answer:
+
+Orchestration: Glue Workflows or Step Functions to sequence jobs.
+Scheduling: EventBridge or CloudWatch events.
+Monitoring: CloudWatch logs + Glue job metrics dashboard.
+Alerting: SNS notifications on job failures.
+
+🔗 13. Data Integration Strategy
+
+❓Q13: How do you integrate multiple data sources with different formats?
+
+Answer:
+Use AWS Glue Crawlers to discover and classify schemas.
+Convert all formats to Parquet for consistency.
+Apply schema mapping in Glue ETL scripts.
+Use S3 as a staging zone for raw → processed → curated layers.
+Maintain metadata consistency in Glue Data Catalog.
+
+🧩 14. Schema Evolution Handling
+
+❓Q14: How do you handle schema changes in a data lake?
+Answer:
+
+Use Glue Crawlers to detect changes automatically.
+Apply schema versioning in Glue Data Catalog.
+In Spark/Glue ETL, use mergeSchema option to combine old + new columns.
+For breaking changes, maintain backward compatibility with versioned data folders.
+
+🧠 15. Common Data Architecture Patterns
+
+❓Q15: What are some key data architecture patterns you’ve worked with?
+
+Answer:
+Lambda Architecture: Combines batch (S3 + Glue) and streaming (Kinesis + Glue Streaming).
+Kappa Architecture: Real-time only — uses streaming for all data.
+Medallion Architecture (Bronze-Silver-Gold):
+Bronze: Raw data
+Silver: Cleaned data
+Gold: Aggregated business data

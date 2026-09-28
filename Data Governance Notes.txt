@@ -1,0 +1,517 @@
+1 - What is Data Governance?
+
+Data Governance is the set of processes, rules, roles, and controls that ensure data is accurate, secure, consistent, usable, and trusted.
+
+In simple words:
+It is how an organisation manages data so that everyone uses the same, correct, secure data.
+
+2 - Why is Data Governance Important?
+
+1 - Better decision-making
+2 - Improved data quality
+3 - High trust in reports
+4 - Security & compliance (GDPR, HIPAA, RBI, etc.)
+5 - Avoids duplicate, inconsistent or missing data
+6 - Reduces cost and risk
+
+3 - Core Components of Data Governance
+
+1. Data Policies
+
+High-level rules that decide how data should be managed.
+Example: "Customer PII must be encrypted and not shared externally."
+
+2. Data Standards
+
+Detailed formats or rules.
+Example: Dates must be in YYYY-MM-DD.
+
+3. Data Procedures & Processes
+
+Step-by-step instructions for implementation.
+Example: Process for onboarding new datasets into the warehouse.
+
+4 - Data Quality Management
+
+Ensuring data is —
+
+1 - Accurate
+2 - Complete
+3 - Consistent
+4 - Valid
+5 - Unique
+6 - Timely
+
+5 - Data Security & Privacy
+
+1 - Protecting data using:
+2 - Access controls
+3 - Encryption
+4 - Masking
+5 - Role-based access
+
+6 - Metadata Management
+
+Managing information about data (column definitions, lineage, owner, source).
+Example: Data Catalog tools like Alation, Collibra, Purview.
+
+7 - Master Data Management (MDM)
+
+Creates a “single source of truth” for key entities:
+Customer, Product, Vendor, Employee, etc.
+
+8 - Data Lifecycle Management
+
+Stages of data:
+
+Creation → Storage → Usage → Archival → Deletion
+
+
+9 - Data Lineage
+
+Tracks:
+
+1 - Where data came from
+2 - How it transformed
+3 - Where it is used
+
+10 - Data Ownership & Stewardship
+
+Roles to manage & govern data
+
+11 - Key Roles in Data Governance
+
+1. Data Owner
+
+1 - Senior person
+2 - Responsible for business impact of data
+3 - Decides who gets access
+
+
+2. Data Steward
+
+Hands-on
+Ensures data quality
+Maintains metadata
+Works daily with data teams
+
+
+3. Data Custodian
+
+IT team responsible for storage, backup, security
+Example: Cloud admin, DB admin
+
+
+4. Data Governance Council
+
+Leadership group
+Creates policies, approves standards
+
+
+5. Data Architect
+
+Designs data models and data flows
+
+
+6. Governance Lead / Manager
+
+Runs data governance program
+Coordinates roles, policies, reports
+
+12 - Data Governance Frameworks
+
+Common frameworks:
+
+1. DAMA DMBoK (most famous)
+2. COBIT – Governance for IT
+3. EDM Council (DCAM)
+4. CMMI Data Maturity
+
+They all cover similar areas:
+
+Data Quality
+Data Architecture
+Security
+Metadata
+MDM
+Data Lifecycle
+
+13 - Data Quality Dimensions (Top 7)
+
+1. Accuracy:
+
+Data is correct.
+Example: Customer age = 28 (not 280).
+
+2. Completeness:
+
+No missing values.
+
+3. Consistency:
+
+Same data across systems.
+(ERP shows price = 100, CRM shows = 100 → consistent)
+
+4. Timeliness:
+
+Data updated at right frequency.
+
+5. Validity:
+
+Follows business rules.
+Example: Email must contain @
+
+6. Uniqueness:
+
+No duplicates.
+
+7. Integrity:
+
+Relationships between tables remain strong (FK constraints).
+
+14 - Data Governance vs Data Management
+
+Data Governance Data Management
+
+Rules, policies, controls Execution of rules
+Defines “what” & “why” Defines “how”
+Managed by business Managed by IT
+Focus on risk, compliance Focus on operations
+
+15 -  Data Privacy
+
+Deals with protecting personal or sensitive data.
+
+Examples:
+
+Masking PAN numbers
+Encrypting mobile numbers
+GDPR “right to forget”
+Consent management
+
+16 - Data Security Controls
+
+Authorization (RBAC)
+Authentication (MFA, SSO)
+Encryption (AES-256)
+Network security (firewalls, VPCs)
+Masking/anonymization
+
+17 - Metadata Management
+
+Types of metadata:
+
+Business metadata – Definitions
+Technical metadata – Schema, datatype
+Operational metadata – Load time, job run status
+
+Tools:
+
+Collibra
+Alation
+Microsoft Purview
+Informatica EDC
+
+1️8 - Master Data Management (MDM)
+
+Creates a consistent, single version of key entities.
+
+Types of MDM Models:
+Centralized
+Registry
+Coexistence
+Transactional hub
+
+Benefits:
+
+Eliminates duplicates
+Creates golden records
+Standard codes/classifications
+
+1️9 - Data Lineage
+
+Tracks end-to-end flow of data.
+
+Example: Source → ETL → Staging → Warehouse → BI Dashboard
+
+Useful for:
+
+Impact analysis
+Troubleshooting data issues
+Compliance
+
+20 - Data Lifecycle Management
+
+1. Data Creation
+2. Ingestion
+3. Storage
+4. Processing
+5. Usage
+6. Archival
+7. Deletion/Retention
+
+Retention rules come from governance policies.
+
+21 - Data Governance Operating Model
+
+Two common models:
+
+Centralized
+
+One team controls everything.
+(Used in small companies)
+
+Federated
+
+Each domain owns its data, central governance sets standards.
+(Most modern companies — Data Mesh style)
+
+22 - Data Governance Tools
+
+Data Cataloging:
+
+Alation
+Collibra
+Purview
+Informatica
+
+Quality:
+
+Great Expectations
+Deequ
+Talend
+
+Lineage:
+
+OpenLineage
+Amundsen
+Atlas
+
+MDM systems:
+
+Informatica MDM
+SAP MDG
+Reltio
+
+23 - Data Governance in Cloud
+
+Azure: Purview
+AWS: Lake Formation
+GCP: Dataplex
+
+Key features:
+
+Access control
+Catalog
+Lineage
+Masking
+Policies
+
+24 - Data Governance in Data Lake / Lakehouse
+
+Must handle:
+
+Raw zone
+Cleansed zone
+Enriched zone
+BI zone
+
+Controls:
+
+Schema enforcement
+Access governance
+Data versioning
+Quality checks
+Lineage
+
+25 - Data Governance Policies (Most Important)
+
+Data Quality Policy
+Data Security & Access Policy
+Data Privacy Policy
+Data Retention Policy
+Data Classification Policy
+Metadata Management Policy
+Data Sharing Policy
+Cloud Data Usage Policy
+
+26 - Data Classification
+
+Levels:
+
+1. Public
+2. Internal
+3. Confidential
+4. Restricted
+
+27 -  Data Governance Tools
+Collibra - 
+
+✅ Top Collibra Interview Questions & Answers (Clear & Practical)
+
+1 . What is Collibra?
+
+Answer:
+Collibra is a Data Governance and Data Intelligence platform that helps organizations manage data assets, maintain data quality, define data ownership, create business glossaries, and ensure compliance.
+
+Key features:
+
+ Business Glossary
+ Data Catalog
+ Data Lineage
+ Data Stewardship workflows
+ Data Quality integration
+ Policy management
+
+2.What are the core components of Collibra?
+
+Answer:
+The main components are:
+
+ Domains – categories of assets (e.g., Business Terms, Data Sets, Reports).
+ Assets – individual items (e.g., Customer Table, Order Report).
+ Attributes – metadata details about an asset.
+ Relations – connections between assets (e.g., Table contains Column).
+ Workflows – approval and governance processes.
+ Communities & Domains – structure for organizing ownership.
+
+3.What is a Business Glossary in Collibra?
+
+Answer:
+A Business Glossary contains standardized business definitions to ensure everyone in the organization speaks the same language.
+
+Example:
+
+ Customer → A person who purchases products from the company.
+
+It reduces ambiguity and aligns business & technical teams.
+
+4.What is a Data Dictionary in Collibra?
+
+Answer:
+A Data Dictionary stores technical metadata such as tables, columns, schemas, data types, constraints, etc.
+
+Difference from Business Glossary:
+
+ Glossary = Business definitions
+ Data Dictionary = Technical details
+
+5.What is a Steward in Collibra?
+
+Answer:
+A Data Steward is responsible for:
+
+ Maintaining accurate metadata
+ Approving business terms
+ Handling data quality and access issues
+ Running governance workflows
+
+6.What are Workflows in Collibra?
+
+Answer:
+Workflows are automated processes like:
+
+ Approving business terms
+ Requesting data access
+ Creating new assets
+ Managing changes
+
+They are built using BPMN (Business Process Model & Notation).
+
+7.How does Collibra connect to external systems?
+
+Answer:
+Using:
+✔ Collibra Connect (Mulesoft-based)
+✔ Collibra API
+✔ Edge pipelines
+✔ Metadata ingestion tools (e.g., Informatica, Azure Purview, Snowflake)
+
+8.What is Data Lineage in Collibra?
+
+Answer:
+Lineage shows how data flows from source → transformations → reports.
+
+It helps in:
+
+ Impact analysis
+ Root-cause analysis (why a report is wrong)
+ Compliance
+ Understanding dependencies
+
+9.Difference between Technical Lineage and Business Lineage?
+
+Answer:
+
+| Type                  | Meaning                                                  |
+|  | -- |
+| Technical Lineage | Code-level flow (SQL, ETL, pipelines)                    |
+| Business Lineage  | High-level conceptual flow (system → warehouse → report) |
+
+10. What is Collibra API used for?
+
+APIs are used for:
+
+ Creating assets
+ Updating metadata
+ Automating workflows
+ Integrating with other tools (Tableau, Snowflake, Power BI)
+
+11.What are Communities and Domains?
+
+Answer:
+
+ Community = highest-level grouping (e.g., Sales, Finance).
+ Domain = sub-groups within communities (e.g., Business Glossary, Technical Assets).
+
+It helps in role management & ownership.
+
+12.What is Policy Management in Collibra?
+
+Collibra lets teams define:
+
+ Data access policies
+ Retention policies
+ Regulatory rules (GDPR, HIPAA)
+
+Policies link back to assets to ensure compliance.
+
+13. What roles are available in Collibra?
+
+Common roles:
+
+ System Administrator
+ Data Owner
+ Data Steward
+ Data Custodian
+ Business User
+
+Each role has specific responsibilities and permissions.
+
+14.What is the purpose of Data Quality integration with Collibra?
+
+Collibra integrates with tools like:
+
+ Informatica IDQ
+ Great Expectations
+ Talend
+ Ataccama
+ BigID
+
+It pulls data quality scores, rules, issues into Collibra for visibility.
+
+15.What is Operational Model in Collibra?
+
+It defines the organization’s governance structure:
+
+ Who owns what
+ Who approves what
+ Who is responsible for data issues
+
+This is implemented using workflows & responsibilities.
+
+16.  Why/What Data Governance
+
+What - Data Quality, Cleaned Version, Enrichment
+Why - There is a sets of rules we have to follow while working with data, one day the leadership change and they want to change the approach but for that they need the approval 
+from the team who made the rule. Simply it is there to keep the team alingn on the same page

@@ -1,0 +1,342 @@
+✅ DATA WAREHOUSING — Important Topics (Explained Simply)
+
+- SIngle source of truth
+
+ 1. OLTP vs OLAP
+
+ OLTP: Real-time transactions (insert/update). Small queries, many users.
+ OLAP: Analytics (reports, dashboards). Large read queries, fewer users.
+
+ 2. ETL vs ELT
+
+ ETL: Transform before loading → traditional DW.
+ ELT: Load raw data first, then transform inside warehouse (modern cloud).
+
+ 3. Star Schema
+
+ Central Fact table + connected Dimension tables.
+ Easy, fast for analytics → preferred design.
+
+ 4. Snowflake Schema
+
+ Dimensions normalized into sub-tables.
+ Saves storage, slower joins than star.
+
+ 5. Fact Table
+
+ Stores measures (sales amount, count).
+ High volume + foreign keys to dimensions.
+
+ 6. Dimension Table
+
+ Stores descriptive business data (customer, product).
+ Low volume + wide tables.
+
+ 7. Granularity
+
+ Level of detail of fact table (daily sales vs hourly sales).
+ Finer grain → more rows → more accuracy.
+
+ 8. Surrogate Keys
+
+ System-generated keys (int).
+ Used in dimension tables to avoid using business keys.
+
+ 9. Slowly Changing Dimensions (SCD)
+
+ How dimension history is stored:
+
+   SCD1: Overwrite (no history).
+   SCD2: New row for every change (maintains history).
+   SCD3: New column for previous value.
+
+ 10. Data Marts
+
+ Department-specific mini-warehouses (Sales mart, Finance mart).
+ Extracted from enterprise warehouse.
+
+ 11. Staging Layer
+
+ Temporary raw landing zone before cleaning/transformation.
+
+ 12. Metadata
+
+ Data about data → table definitions, lineage, owner, refresh schedule.
+
+ 13. Data Quality
+
+ Accuracy, completeness, consistency, uniqueness, timeliness.
+
+ 14. Indexing
+
+ Speeds up queries by creating pointers → used heavily in OLAP systems.
+
+ 15. Partitioning
+
+ Splitting a table into chunks (date-wise).
+ Improves performance & reduces scanning.
+
+ 16. Data Warehouse Architectures
+
+ Kimball (Bottom-up) → Data marts → DW.
+ Inmon (Top-down) → Enterprise DW → marts.
+ Hybrid (modern) → Lakehouse + ELT.
+
+ 17. Fact Table Types
+
+ Transactional fact – one event per row
+ Periodic snapshot – fixed time interval (daily snapshot)
+ Accumulating snapshot – lifecycle events (order stages)
+
+ 18. Conformed Dimensions
+
+ Shared dimensions across facts (same customer dimension everywhere).
+
+ 19. Data Lineage
+
+ How data moves from source → transformations → warehouse.
+
+
+✅ DATA LAKE — Important Topics (Explained Simply)
+
+ 1. What is Data Lake?
+
+ Storage of raw, semi-structured, and unstructured data at low cost (S3, ADLS, GCS).
+ Stores data in native format → schema-on-read.
+
+
+
+ 2. Schema-on-Read vs Schema-on-Write
+
+ Read: Schema applied while querying → flexible (Data Lake).
+ Write: Schema applied before loading → strict (Data Warehouse).
+
+
+
+ 3. Data Lake Zones
+
+ Raw / Bronze: Uncleaned raw data.
+ Cleaned / Silver: Basic cleaned, standardized.
+ Curated / Gold: Business-ready data (aggregations, KPIs).
+
+
+
+ 4. File Formats
+
+ Parquet (columnar, compressed, best for analytics)
+ ORC
+ CSV / JSON (slower)
+
+
+
+ 5. Governance Challenges
+
+ Lakes become “data swamps” without:
+
+   Catalog
+   Access control
+   Quality checks
+   Metadata
+
+
+
+ 6. Data Lake Use Cases
+
+ ML/AI
+ Unstructured storage
+ Raw log storage
+ Big data analytics
+
+✅ LAKEHOUSE — Important Topics
+
+ 1. What is Lakehouse?
+
+ Combines data lake (low cost storage) + data warehouse (ACID, performance, BI).
+ Example: Delta Lake, Apache Iceberg, Hudi.
+
+
+
+ 2. Key Features
+
+ ACID transactions on data lake
+ Time Travel → query old versions
+ Schema Enforcement + Evolution
+ High performance using index, caching
+ Unified storage for BI + ML
+
+
+
+ 3. Delta Lake / Iceberg / Hudi Concepts
+
+ Delta Table: Parquet + transaction log
+ Z-Ordering: improves data skipping
+ Partition pruning: scan only required partitions
+ Merge (UPSERT): support for SCD2 on lake
+
+
+
+ 4. Medallion Architecture (Core of Lakehouse)
+
+ Bronze → Silver → Gold
+
+   Bronze: raw
+   Silver: cleaned & conformed
+   Gold: business KPIs, reporting tables
+
+
+
+ 5. Why Lakehouse?
+
+ Data warehouse gives governance
+ Data lake gives scalability + low cost
+ Lakehouse gives both.
+
+✅ DATA WAREHOUSE vs DATA LAKE vs LAKEHOUSE (One-liner)
+
+| Concept     | Warehouse    | Lake            | Lakehouse       |
+
+| Data Type   | Structured   | All types       | All types       |
+| Schema      | Write        | Read            | Write + Read    |
+| Purpose     | BI/Reporting | Raw storage, ML | Unified BI + ML |
+| Cost        | High         | Low             | Medium          |
+| Performance | High         | Lower           | High            |
+| ACID        | Yes          | No              | Yes             |
+| Governance  | Strong       | Weak            | Strong          |
+
+
+ACID Property:-
+
+Atomicity, Consistency, Isolation, Durability.
+
+Imagine you have a savings account with 25,000 in it.
+Your bank needs you to maintain a minimum balance of 5,000.
+And you are transferring some amount to a friend.
+
+A transfer has two steps.
+Money goes out of your account.
+Money goes into your friend’s account.
+
+If the first happens and the second fails,
+you end up losing money
+and your friend still doesn’t receive anything.
+That is an inconsistent and unfair state for the system.
+
+Atomicity simply means
+both steps must succeed together
+or none of them should happen.
+
+Consistency means
+your transfer should not break the rules of the system.
+If you try to send your full 25,000
+your balance becomes zero
+which violates the minimum 5,000 requirement.
+So the system should not allow it.
+
+Isolation is about timing.
+Your account gets debited at one moment.
+Your friend gets credited a little later.
+If someone checks the balances in between,
+they should not see half-done data.
+They should either see the situation before the transfer
+or after the transfer,
+but never the messy middle.
+
+Durability is the simple idea
+that once the money has been transferred and committed,
+it should never be lost
+even if there is a crash or power failure.
+
+That’s ACID.
+The real version.
+The version that finally clicked for me. 
+
+ETL and ELT
+
+✅ Traditional Architecture (ETL)
+
+ETL = Extract → Transform → Load
+Here, transformations happen before loading into the Data Warehouse.
+
+Where ETL happens:
+
+ETL Tools: Informatica, SSIS, Talend, DataStage
+
+Or Data Pipelines: Airflow, ADF, Glue
+
+The Data Warehouse stores:
+✔ Clean data
+✔ Conformed dimensions
+✔ Fact tables
+✔ Star-schema or Snowflake schema
+
+Interview line:
+
+“In a classic ETL setup, the data warehouse receives only the cleaned and transformed data. All transformations happen before loading.”
+
+✅ Modern Architecture (ELT)
+
+ELT = Extract → Load → Transform
+Here, raw data is loaded first into the data warehouse, and then transformation happens inside the warehouse using SQL.
+
+Where ELT happens:
+
+Snowflake
+BigQuery
+Redshift
+Databricks SQL
+dbt
+
+Why?
+Because modern warehouses are highly scalable, fast, and cheaper, so companies use them to run transformations.
+
+Here is the shortest and clearest interview answer for the difference between old data warehousing tools (like Informatica) and modern cloud warehouses (Snowflake, Databricks, etc.):
+
+✅ Basic Difference: Traditional DW (Informatica) vs Modern Cloud Platforms (Snowflake, Databricks)
+
+1. Architecture
+
+Informatica (Traditional):
+  ETL tool + on-prem data warehouse; tightly coupled, heavy hardware dependency.
+Snowflake / Databricks (Modern):
+  Fully cloud-native, scalable, serverless compute-storage separation.
+
+2. Purpose
+
+Informatica:
+  Primarily an ETL/ELT tool (integration, transformation, workflows).
+Snowflake:
+  A cloud data warehouse for storage + analytics.
+Databricks:
+  A lakehouse platform for big data, ML, streaming + warehousing.
+
+3. Scalability
+
+Informatica:
+  Limited by on-prem hardware; scaling is manual.
+Snowflake / Databricks:
+  Automatic, elastic scaling; pay-as-you-go.
+
+4. Processing Model
+
+Informatica:
+  Mostly batch ETL; slower; hardware-bound.
+Snowflake:
+  ANSI SQL engine optimized for analytics, virtual warehouses.
+Databricks:
+  Distributed processing using Spark; handles batch + streaming + ML.
+
+5. Maintenance
+
+Informatica:
+  High operational effort (servers, upgrades, capacity planning).
+Snowflake / Databricks:
+  Low/no maintenance; auto-optimize, auto-scale.
+
+6. Data Types
+
+Informatica:
+  Mostly structured data.
+Snowflake:
+  Structured + semi-structured (JSON, Parquet).
+Databricks:
+  Structured, semi-structured, unstructured (images, logs, ML data).
